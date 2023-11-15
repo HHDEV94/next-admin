@@ -23,7 +23,7 @@ const UserDashboard = ({ user }) => {
       <td>{user.status}</td>
       <td>
         <div className={styles.buttons}>
-          <Link href={'/'}>
+          <Link href={'/dashboard/users/1'}>
             <button className={`${styles.button} ${styles.view}`}>View</button>
           </Link>
           <Link href={'/'}>

@@ -1,0 +1,85 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  background: #159957;
+  background: -webkit-linear-gradient(to right, #155799, #159957);
+  background: linear-gradient(to right, #155799, #159957);
+}
+
+.imageContainer {
+  position: relative;
+  width: 600px;
+  height: 700px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 10px;
+    background: #159957;
+    background: -webkit-linear-gradient(to top, #155799, #159957);
+    background: linear-gradient(to top, #155799, #159957);
+  }
+
+  .imageContainer {
+    width: 300px;
+    height: 400px;
+  }
+}
+
+.form {
+  background-color: var(--bgSoft);
+  padding: 50px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  width: 500px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .form {
+    width: 350px;
+    height: 400px;
+    padding: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form input {
+  padding: 30px;
+  border: 2px solid #2e374a;
+  border-radius: 5px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .form input {
+    padding: 10px;
+  }
+}
+
+.form button {
+  padding: 20px;
+  background-color: teal;
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 20px;
+}
