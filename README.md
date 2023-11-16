@@ -10,4 +10,4 @@ run next commands:
 2. **npm run dev** to run project in local server.
 3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This project uses [`Next.js`](https://nextjs.org/) as development Framework, css module and [`Recharts`](https://recharts.org/en-US/) to visualize charts.
+This project uses [`Next.js`](https://nextjs.org/) as development Framework, css module, and [`Recharts`](https://recharts.org/en-US/) to visualize charts.

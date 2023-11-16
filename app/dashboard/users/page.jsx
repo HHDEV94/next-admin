@@ -1,11 +1,14 @@
 import Search from '@/app/ui/users/search/Search'
 import styles from '../../ui/users/user.module.css'
 import Link from 'next/link'
-import USER_DATA from '@/constants/userData'
 import UserDashboard from '@/app/ui/users/dashboard/UserDashboard'
 import Pagination from '@/app/ui/users/pagination/Pagination'
+import { fetchUsers } from '@/app/lib/data'
 
-const UsersPage = () => {
+const UsersPage = async ({ searchParams }) => {
+  const q = searchParams?.q || ''
+  const users = await fetchUsers(q)
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -25,7 +28,7 @@ const UsersPage = () => {
           </tr>
         </thead>
         <tbody>
-          {USER_DATA.map(user => (
+          {users.map(user => (
             <UserDashboard key={user.id} user={user} />
           ))}
         </tbody>

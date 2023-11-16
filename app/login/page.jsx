@@ -8,6 +8,7 @@ const LoginPage = () => {
         <Image src={'/login.svg'} alt='login_img' fill />
       </div>
       <form className={styles.form}>
+        <h1>Login</h1>
         <div className={styles.formGroup}>
           <label>Email</label>
           <input type='text' placeholder='jonhd@email.com' />
