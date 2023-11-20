@@ -26,9 +26,10 @@ const UserDashboard = ({ user }) => {
           <Link href={`/dashboard/users/${user.id}`}>
             <button className={`${styles.button} ${styles.view}`}>View</button>
           </Link>
-          <Link href={'/'}>
+          <form>
+            <input type='hidden' name='id' value={user.id} />
             <button className={`${styles.button} ${styles.delete}`}>Delete</button>
-          </Link>
+          </form>
         </div>
       </td>
     </tr>

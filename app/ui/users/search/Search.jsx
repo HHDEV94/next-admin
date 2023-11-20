@@ -1,7 +1,8 @@
 'use client'
 import { MdSearch } from 'react-icons/md'
-import styles from './search.module.css'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useDebouncedCallback } from 'use-debounce'
+import styles from './search.module.css'
 
 const Search = ({ placeholder }) => {
   const searchParams = useSearchParams()
@@ -9,8 +10,9 @@ const Search = ({ placeholder }) => {
   const pathname = usePathname()
 
   //Search and fetch item using url query
-  const handleSearch = e => {
+  const handleSearch = useDebouncedCallback(e => {
     const params = new URLSearchParams(searchParams)
+    params.set('page', 1)
 
     if (e.target.value) {
       //it search after to write 3 characters.
@@ -20,7 +22,7 @@ const Search = ({ placeholder }) => {
     }
 
     replace(`${pathname}?${params}`)
-  }
+  })
 
   return (
     <div className={styles.container}>

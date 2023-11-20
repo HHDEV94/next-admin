@@ -1,10 +1,11 @@
+import { addUser } from '@/app/lib/actions'
 import styles from '@/app/ui/products/addProduct/addProduct.module.css'
 
 const AddUserPage = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Add a new user</h1>
-      <form action='' className={styles.form}>
+      <form action={addUser} className={styles.form}>
         <input type='text' placeholder='User Name' name='username' required />
         <input type='email' placeholder='E-mail' name='email' required />
         <input type='password' placeholder='Password' name='password' required />

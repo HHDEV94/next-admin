@@ -1,31 +1,38 @@
 import Image from 'next/image'
 import styles from '@/app/ui/users/sigleUser/singleUser.module.css'
+import { updateProduct } from '@/app/lib/actions'
+import { fetchProduct } from '@/app/lib/data'
 
-const SingleProductPage = () => {
+const SingleProductPage = async ({ params }) => {
+  const { id } = params
+  const prod = await fetchProduct(id)
+  console.log(prod)
+
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-          <Image src={'/noavatar.png'} alt='' fill />
+          <Image src={prod?.img || '/noproduct.jpg'} alt='' fill />
         </div>
-        John Doe
+        {prod.title}
       </div>
       <div className={styles.formContainer}>
-        <form action='' className={styles.form}>
+        <form action={updateProduct} className={styles.form}>
+          <input type='hidden' name='id' value={id} />
           <label>Title</label>
-          <input type='text' name='title' placeholder='Jonh Doe' />
+          <input type='text' name='title' placeholder={prod.title} />
 
           <label>Price</label>
-          <input type='number' name='price' placeholder='$100, $200, $300...' />
+          <input type='number' name='price' placeholder={prod.price} />
 
           <label>Stock</label>
-          <input type='number' name='stock' placeholder='100, 250, 500' />
+          <input type='number' name='stock' placeholder={prod.stock} />
 
           <label>Color</label>
-          <input type='text' name='color' placeholder='red, gray, blue, midnight' />
+          <input type='text' name='color' placeholder={prod.color} />
 
           <label>Size</label>
-          <textarea type='text' name='size' placeholder='San Francisco' />
+          <textarea type='text' name='size' placeholder={prod.size} />
 
           <label>Category</label>
           <select name='category' id='category'>
@@ -34,7 +41,7 @@ const SingleProductPage = () => {
           </select>
 
           <label>Description</label>
-          <textarea name='desc' id='desc' rows={10} placeholder='Description' />
+          <textarea name='desc' id='desc' rows={10} placeholder={prod.description} />
 
           <button>Update</button>
         </form>

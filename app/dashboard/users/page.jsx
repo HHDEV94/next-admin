@@ -1,13 +1,14 @@
 import Search from '@/app/ui/users/search/Search'
-import styles from '../../ui/users/user.module.css'
-import Link from 'next/link'
 import UserDashboard from '@/app/ui/users/dashboard/UserDashboard'
 import Pagination from '@/app/ui/users/pagination/Pagination'
+import Link from 'next/link'
 import { fetchUsers } from '@/app/lib/data'
+import styles from '../../ui/users/user.module.css'
 
 const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || ''
-  const users = await fetchUsers(q)
+  const page = searchParams?.page || 1
+  const { count, users } = await fetchUsers(q, page)
 
   return (
     <div className={styles.container}>
@@ -33,7 +34,7 @@ const UsersPage = async ({ searchParams }) => {
           ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
   )
 }

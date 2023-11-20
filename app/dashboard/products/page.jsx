@@ -1,11 +1,15 @@
 import Link from 'next/link'
 import Search from '@/app/ui/users/search/Search'
 import Pagination from '@/app/ui/users/pagination/Pagination'
-import styles from '@/app/ui/products/products.module.css'
-import PRODUCT_DATA from '@/constants/productData'
 import ProductDashboard from '@/app/ui/products/dashboard/ProductDashboard'
+import { fetchProducts } from '@/app/lib/data'
+import styles from '@/app/ui/products/products.module.css'
 
-const ProductPage = () => {
+const ProductPage = async ({ searchParams }) => {
+  const q = searchParams?.q || ''
+  const page = searchParams?.page || 1
+  const { count, products } = await fetchProducts(q, page)
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -26,12 +30,12 @@ const ProductPage = () => {
           </tr>
         </thead>
         <tbody>
-          {PRODUCT_DATA.map(product => (
+          {products.map(product => (
             <ProductDashboard key={product.id} product={product} />
           ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
   )
 }
