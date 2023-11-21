@@ -4,6 +4,7 @@ import { connectDB } from './utils'
 import { redirect } from 'next/navigation'
 import bcrypt from 'bcrypt'
 import { Product, User } from './models'
+import { signIn, signOut } from '../auth'
 
 // Add new items to DB --------------------------------------------------------||
 export const addUser = async formData => {
@@ -117,4 +118,20 @@ export const updateProduct = async formData => {
 
   revalidatePath('/dashboard/products')
   redirect('/dashboard/products')
+}
+
+// signIn and logOut ------------------------------------------------------------------------------------||
+
+export const authenticate = async (prevState, formData) => {
+  const { username, password } = Object.fromEntries(formData)
+
+  try {
+    await signIn('credentials', { username, password })
+  } catch (error) {
+    return 'Wrong credentials!'
+  }
+}
+
+export const logOut = async () => {
+  await signOut()
 }
